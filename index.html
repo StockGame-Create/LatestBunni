@@ -208,26 +208,34 @@
     <div class="planet planet2"></div>
 
     <div class="downloader-container">
-        <h1>Bunni Executor NO KEY Version (1.06)</h1>
+        <h1>Download Bunni Executor NO KEY Version (1.0)</h1>
         
         <div class="file-info">
             <div class="file-icon">
                 <img src="icon.ico" alt="File Icon" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%234dabf7%22 rx=%2210%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22%3E📦%3C/text%3E%3C/svg%3E'">
             </div>
-            <div class="file-name">LatestBunni.zip</div>
-            <div class="file-size">Ready! (Updated 2026-01-30)</div>
+            <div class="file-name">download.zip</div>
+            <div class="file-size">Updated Checked! 2026-01-30</div>
         </div>
 
         <button class="download-btn" onclick="downloadFile()">
-            ⬇️ Download (Yes, Of  Course... No ADS!!)
+            ⬇️ Download No ADS :)
         </button>
 
         <div class="status-message" id="statusMessage">
-            Download Started!
+            Download started!
         </div>
     </div>
 
     <script>
+        // 파일명 설정 (여기서 원하는 이름으로 변경하세요)
+        const FILE_NAME = 'LatestBunni.zip';
+
+        // 페이지 로드 시 파일명 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.file-name').textContent = FILE_NAME;
+        });
+
         // 별 생성
         function createStars() {
             const starsContainer = document.getElementById('stars');
@@ -266,16 +274,13 @@
             // 별똥별 효과
             createShootingStar();
 
-            // 더미 ZIP 파일 생성 및 다운로드
-            const blob = new Blob(['파일 내용 예시'], { type: 'application/zip' });
-            const url = URL.createObjectURL(blob);
+            // 실제 파일 다운로드 (같은 폴더에 있는 파일)
             const a = document.createElement('a');
-            a.href = url;
-            a.download = 'LatestBunni.zip';
+            a.href = FILE_NAME;
+            a.download = FILE_NAME;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            URL.revokeObjectURL(url);
 
             setTimeout(() => {
                 statusMessage.classList.remove('show');
