@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <title>Bunni.lol</title>
     <style>
         * {
@@ -23,75 +23,94 @@
             align-items: center;
         }
 
-  /* 💖 발렌타인 데이 로맨틱 배경 */
-.space-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, #ff1493, #ff69b4, #ffb6c1, #ffc0cb);
-    z-index: 1;
-}
+        /* 💖 발렌타인 데이 로맨틱 배경 */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 25%, #ffb6c1 50%, #ffc0cb 75%, #fff0f5 100%);
+            z-index: 1;
+            animation: gradientShift 10s ease infinite;
+        }
 
-/* 💕 하트 반짝임 애니메이션 */
-.stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
+        @keyframes gradientShift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
 
-.star {
-    position: absolute;
-    background: #ff1493;
-    border-radius: 50%;
-    animation: twinkle 3s infinite;
-    box-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493;
-}
+        /* 💕 하트 반짝임 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
 
-/* 하트 모양으로 변경하려면 이것도 추가 */
-.star::before,
-.star::after {
-    content: "";
-    position: absolute;
-    background: #ff1493;
-    border-radius: 50%;
-}
+        .star {
+            position: absolute;
+            color: #ff1493;
+            font-size: 20px;
+            animation: twinkle 3s infinite;
+            text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493;
+        }
 
-@keyframes twinkle {
-    0%, 100% { 
-        opacity: 0.3;
-        transform: scale(1);
-    }
-    50% { 
-        opacity: 1;
-        transform: scale(1.2);
-    }
-}
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
 
-        /* 행성들 */
+        /* 💕 떨어지는 하트 */
+        .falling-heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 30px;
+            animation: fall linear;
+            opacity: 0.8;
+            text-shadow: 0 0 5px #fff;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 하트 행성들 */
         .planet {
             position: absolute;
-            border-radius: 50%;
-            opacity: 0.6;
+            opacity: 0.4;
+            filter: blur(2px);
+            font-size: 100px;
         }
 
         .planet1 {
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
             top: 10%;
             left: 10%;
             animation: float 20s infinite ease-in-out;
         }
 
         .planet2 {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle at 30% 30%, #4dabf7, #1864ab);
             bottom: 15%;
             right: 15%;
             animation: float 15s infinite ease-in-out reverse;
@@ -161,7 +180,8 @@
         }
 
         .download-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 50%, #ff1493 100%);
+            background-size: 200% 200%;
             color: white;
             border: none;
             padding: 15px 40px;
@@ -169,13 +189,23 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
             margin-top: 20px;
+            animation: buttonGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonGlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+            }
+            50% { 
+                background-position: 100% 50%;
+            }
         }
 
         .download-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.6);
         }
 
         .download-btn:active {
@@ -221,15 +251,15 @@
     <div class="space-background"></div>
     <div class="stars" id="stars"></div>
     
-    <div class="planet planet1"></div>
-    <div class="planet planet2"></div>
+    <div class="planet planet1">💗</div>
+    <div class="planet planet2">💖</div>
 
     <div class="downloader-container">
         <h1>Download Bunni Executor NO KEY Version (1.0)</h1>
         
         <div class="file-info">
             <div class="file-icon">
-                <img src="icon.ico" alt="File Icon" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%234dabf7%22 rx=%2210%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22%3E📦%3C/text%3E%3C/svg%3E'">
+                <img src="logo.ico" alt="File Icon" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%234dabf7%22 rx=%2210%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22%3E📦%3C/text%3E%3C/svg%3E'">
             </div>
             <div class="file-name">download.zip</div>
             <div class="file-size">Updating Checked! 2026-02-13</div>
@@ -253,21 +283,38 @@
             document.querySelector('.file-name').textContent = FILE_NAME;
         });
 
-        // 별 생성
+        // 하트 별 생성
         function createStars() {
             const starsContainer = document.getElementById('stars');
+            const hearts = ['💕', '💖', '💗', '💓', '💝'];
             const numberOfStars = 200;
 
             for (let i = 0; i < numberOfStars; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                star.style.width = Math.random() * 3 + 'px';
-                star.style.height = star.style.width;
+                star.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                star.style.fontSize = (Math.random() * 10 + 10) + 'px';
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
                 star.style.animationDelay = Math.random() * 3 + 's';
                 starsContainer.appendChild(star);
             }
+        }
+
+        // 떨어지는 하트 생성
+        function createFallingHeart() {
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '💘'];
+            const heart = document.createElement('div');
+            heart.className = 'falling-heart';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
         }
 
         // 별똥별 생성
@@ -290,6 +337,11 @@
 
             // 별똥별 효과
             createShootingStar();
+            
+            // 하트 폭발
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createFallingHeart, i * 100);
+            }
 
             // 실제 파일 다운로드 (같은 폴더에 있는 파일)
             const a = document.createElement('a');
@@ -307,15 +359,11 @@
         // 초기화
         createStars();
 
+        // 주기적으로 하트 떨어뜨리기
+        setInterval(createFallingHeart, 800);
+
         // 주기적으로 별똥별 생성
         setInterval(createShootingStar, 5000);
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
